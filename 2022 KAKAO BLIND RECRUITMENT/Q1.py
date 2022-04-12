@@ -4,13 +4,12 @@ def solution(id_list, report, k):
     ans = []
     mail_cnt = defaultdict(int)
     report_cnt = defaultdict(int)
-    reporter = defaultdict(set)
+    reporter = defaultdict(list)
     
-    for r in report:
+    for r in set(report):
         uid, rid = r.split()
-        if uid not in reporter[rid]:
-            report_cnt[rid] += 1
-            reporter[rid].add(uid)
+        report_cnt[rid] += 1
+        reporter[rid].append(uid)
     
     for rid in report_cnt:
         if report_cnt[rid] >= k:
