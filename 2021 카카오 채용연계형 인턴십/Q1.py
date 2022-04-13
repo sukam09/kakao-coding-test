@@ -12,7 +12,7 @@ def solution(s):
         'nine': '9'
     }
 
-    for word in s2i:
-        s = s.replace(word, s2i[word])
+    for k, v in s2i.items():
+        s = s.replace(k, v)
     
     return int(s)
