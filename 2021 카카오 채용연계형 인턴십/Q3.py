@@ -12,7 +12,6 @@ def remove():
     pc, nc = prev[cur], next[cur]
     data[cur] = 0
     history.append((cur, pc, nc))
-    next[cur], prev[cur] = -1, -1
 
     if nc != -1:
         next[pc] = nc
