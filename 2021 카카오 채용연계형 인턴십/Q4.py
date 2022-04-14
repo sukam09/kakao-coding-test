@@ -1,4 +1,6 @@
-from heapq import heappush, heappop
+from heapq import heappush
+from heapq import heappop
+
 
 def bitmask(state, idx):
     return (1 << trapidx[idx]) & state
@@ -15,7 +17,7 @@ def solution(n, start, end, roads, traps):
         adjrev[q].append((p, s))
     
     for i, t in enumerate(traps):
-        trapidx[traps[i]] = i
+        trapidx[t] = i
     
     heap = []
     dists[start][0] = 0
