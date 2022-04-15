@@ -6,6 +6,7 @@ def prime(n):
             return False
     return True
 
+
 def solution(n, k):
     k_num = ''
     

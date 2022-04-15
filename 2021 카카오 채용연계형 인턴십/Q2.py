@@ -5,6 +5,7 @@ def search(p):
                 return 0
     return 1
 
+
 def check(i, j, p):
     oob = lambda i, j: i < 0 or i >= 5 or j < 0 or j >= 5
     dx = [1, 0, -1, 0]
@@ -28,6 +29,7 @@ def check(i, j, p):
             return 0
     
     return 1
+
 
 def solution(places):
     return [search(p) for p in places]

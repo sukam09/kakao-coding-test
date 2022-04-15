@@ -1,5 +1,5 @@
 def solution(s):
-    s2i = {
+    word_to_num = {
         'zero': '0',
         'one': '1',
         'two': '2',
@@ -12,7 +12,7 @@ def solution(s):
         'nine': '9'
     }
 
-    for k, v in s2i.items():
+    for k, v in word_to_num.items():
         s = s.replace(k, v)
     
     return int(s)

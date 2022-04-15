@@ -7,6 +7,7 @@ def move(dir, step):
         for _ in range(step):
             cur = next[cur]
 
+
 def remove():
     global cur
     pc, nc = prev[cur], next[cur]
@@ -21,6 +22,7 @@ def remove():
         next[pc] = -1
         prev[cur] = -1
         cur = pc
+
 
 def recover():
     target, pc, nc = history.pop()

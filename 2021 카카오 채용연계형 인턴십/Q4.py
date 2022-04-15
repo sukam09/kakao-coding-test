@@ -1,9 +1,9 @@
-from heapq import heappush
-from heapq import heappop
+from heapq import heappush, heappop
 
 
 def bitmask(state, idx):
     return (1 << trapidx[idx]) & state
+
 
 def solution(n, start, end, roads, traps):
     global trapidx
