@@ -17,12 +17,12 @@ def process(expression):
         if e.isdigit():
             num += e
         else:
-            stack.append(num)
+            stack.append(int(num))
             num = ''
             stack.append(e)
             operators.add(e)
     
-    stack.append(num)
+    stack.append(int(num))
     return stack
 
 
@@ -44,9 +44,9 @@ def solution(expression):
                     op2 = stack.pop()
                     operator = stack.pop()
                     op1 = stack.pop()
-                    stack.append(calculate(int(op1), int(op2), operator))
+                    stack.append(calculate(op1, op2, operator))
         
             new_exp = stack
-        ans = max(ans, abs(int(new_exp[0])))
+        ans = max(ans, abs(new_exp[0]))
 
     return ans
