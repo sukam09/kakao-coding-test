@@ -20,7 +20,7 @@ def solution(board):
 
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
-            next_cost = cost + 100 + 500 * int(i != dir_)    
+            next_cost = cost + 100 + 500 * (i != dir_)    
             if oob(nx, ny, n) or board[nx][ny] == 1 or next_cost >= costs[nx][ny][i]:
                 continue
             costs[nx][ny][i] = next_cost
