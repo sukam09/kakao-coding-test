@@ -12,7 +12,7 @@ def solution(s):
         'nine': '9'
     }
 
-    for k, v in word_to_num.items():
-        s = s.replace(k, v)
+    for key, val in word_to_num.items():
+        s = s.replace(key, val)
     
     return int(s)
