@@ -8,7 +8,7 @@ def solution(board, moves):
         for i in range(n):
             if board[i][j] == 0:
                 continue
-            
+
             basket.append(board[i][j])
             board[i][j] = 0
             if len(basket) >= 2 and basket[-1] == basket[-2]:

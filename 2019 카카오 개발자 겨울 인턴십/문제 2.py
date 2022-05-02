@@ -1,12 +1,12 @@
 def solution(s):
-    s = s.split('},{')
+    s = s.split("},{")
     for i in range(len(s)):
-        if '{{' in s[i]:
-            s[i] = s[i].replace('{{', '')
-        if '}}' in s[i]:
-            s[i] = s[i].replace('}}', '')
-        s[i] = s[i].split(',')
-    
+        if "{{" in s[i]:
+            s[i] = s[i].replace("{{", "")
+        if "}}" in s[i]:
+            s[i] = s[i].replace("}}", "")
+        s[i] = s[i].split(",")
+
     ans = []
     checker = {}
     s = sorted(s, key=lambda x: len(x))

@@ -1,6 +1,6 @@
 def move(dir, step):
     global cur
-    if dir == 'U':
+    if dir == "U":
         for _ in range(step):
             cur = prev[cur]
     else:
@@ -37,6 +37,7 @@ def recover():
         next_[pc] = target
         prev[target] = pc
 
+
 def solution(n, k, cmd):
     global data, prev, next_, history, cur
     data = [-1] + [1] * n
@@ -49,13 +50,13 @@ def solution(n, k, cmd):
         if len(c) > 1:
             dir, step = c.split()
             move(dir, int(step))
-        elif c == 'C':
+        elif c == "C":
             remove()
         else:
             recover()
-    
-    ans = ''
+
+    ans = ""
     for i in range(1, n + 1):
-        ans += 'O' if data[i] == 1 else 'X'
-    
+        ans += "O" if data[i] == 1 else "X"
+
     return ans

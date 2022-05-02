@@ -2,9 +2,9 @@ from itertools import permutations
 
 
 def calculate(op1, op2, operator):
-    if operator == '+':
+    if operator == "+":
         return op1 + op2
-    elif operator == '-':
+    elif operator == "-":
         return op1 - op2
     else:
         return op1 * op2
@@ -12,16 +12,16 @@ def calculate(op1, op2, operator):
 
 def process(expression):
     stack = []
-    num = ''
+    num = ""
     for e in expression:
         if e.isdigit():
             num += e
         else:
             stack.append(int(num))
-            num = ''
+            num = ""
             stack.append(e)
             operators.add(e)
-    
+
     stack.append(int(num))
     return stack
 
@@ -45,7 +45,7 @@ def solution(expression):
                     operator = stack.pop()
                     op1 = stack.pop()
                     stack.append(calculate(op1, op2, operator))
-        
+
             new_exp = stack
         ans = max(ans, abs(new_exp[0]))
 

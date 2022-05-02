@@ -9,18 +9,19 @@ def solution(user_id, banned_id):
             if len(bid) != len(uid):
                 continue
             for b, u in zip(bid, uid):
-                if b != '*' and b != u:
+                if b != "*" and b != u:
                     break
             else:
                 candidates[bid].add(uid)
-    
+
     results = []
     for bid in banned_id:
         results.append(candidates[bid])
 
-    checker = {}
+    checker = set()
     for p in product(*results):
-        if len(frozenset(p)) == len(banned_id) and frozenset(p) not in checker:
-            checker[frozenset(p)] = True
+        p = frozenset(p)
+        if len(p) == len(banned_id) and p not in checker:
+            checker.add(p)
 
     return len(checker)

@@ -1,7 +1,7 @@
 def check(mid, stones, k):
     cnt = 0
     for stone in stones:
-        stone = stone - mid
+        stone -= mid
         if stone < 0:
             cnt += 1
         else:

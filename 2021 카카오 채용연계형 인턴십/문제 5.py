@@ -1,17 +1,18 @@
 import sys
-sys.setrecursionlimit(10 ** 6)
+
+sys.setrecursionlimit(10**6)
 
 
 def dfs(cur, lim, left_child, right_child, num):
     global cnt
     left_num = 0
     right_num = 0
-    
+
     if left_child[cur] != -1:
         left_num = dfs(left_child[cur], lim, left_child, right_child, num)
     if right_child[cur] != -1:
         right_num = dfs(right_child[cur], lim, left_child, right_child, num)
-    
+
     if num[cur] + left_num + right_num <= lim:
         return num[cur] + left_num + right_num
     if num[cur] + min(left_num, right_num) <= lim:
@@ -43,13 +44,13 @@ def solution(k, num, links):
             parents[left] = i
         if right != -1:
             parents[right] = i
-    
+
     for i, parent in enumerate(parents):
         if parent == -1:
             root = i
             break
 
-    lo, hi = max(num), 10 ** 8
+    lo, hi = max(num), 10**8
     while lo + 1 < hi:
         mid = (lo + hi) // 2
         if group(root, mid, left_child, right_child, num) <= k:
