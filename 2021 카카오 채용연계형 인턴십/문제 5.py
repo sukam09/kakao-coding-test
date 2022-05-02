@@ -50,12 +50,12 @@ def solution(k, num, links):
             root = i
             break
 
-    lo, hi = max(num), 10**8
-    while lo + 1 < hi:
-        mid = (lo + hi) // 2
+    start, end = max(num), 10**8
+    while start + 1 < end:
+        mid = (start + end) // 2
         if group(root, mid, left_child, right_child, num) <= k:
-            hi = mid
+            end = mid
         else:
-            lo = mid
+            start = mid
 
-    return hi if lo != max(num) else lo
+    return end if start != max(num) else start
