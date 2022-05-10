@@ -3,15 +3,15 @@ import sys
 sys.setrecursionlimit(10**6)
 
 
-def dfs(cur, lim, left_child, right_child, num):
+def dfs(cur, lim, left_children, right_children, num):
     global cnt
     left_num = 0
     right_num = 0
 
-    if left_child[cur] != -1:
-        left_num = dfs(left_child[cur], lim, left_child, right_child, num)
-    if right_child[cur] != -1:
-        right_num = dfs(right_child[cur], lim, left_child, right_child, num)
+    if left_children[cur] != -1:
+        left_num = dfs(left_children[cur], lim, left_children, right_children, num)
+    if right_children[cur] != -1:
+        right_num = dfs(right_children[cur], lim, left_children, right_children, num)
 
     if num[cur] + left_num + right_num <= lim:
         return num[cur] + left_num + right_num
@@ -22,10 +22,10 @@ def dfs(cur, lim, left_child, right_child, num):
     return num[cur]
 
 
-def group(root, lim, left_child, right_child, num):
+def group(root, lim, left_children, right_children, num):
     global cnt
     cnt = 0
-    dfs(root, lim, left_child, right_child, num)
+    dfs(root, lim, left_children, right_children, num)
     cnt += 1
     return cnt
 
@@ -33,17 +33,17 @@ def group(root, lim, left_child, right_child, num):
 def solution(k, num, links):
     global cnt
     n = len(num)
-    left_child = []
-    right_child = []
+    left_children = []
+    right_children = []
     parents = [-1] * n
 
-    for i, (left, right) in enumerate(links):
-        left_child.append(left)
-        right_child.append(right)
-        if left != -1:
-            parents[left] = i
-        if right != -1:
-            parents[right] = i
+    for i, (left_child, right_child) in enumerate(links):
+        left_children.append(left_child)
+        right_children.append(right_child)
+        if left_child != -1:
+            parents[left_child] = i
+        if right_child != -1:
+            parents[right_child] = i
 
     for i, parent in enumerate(parents):
         if parent == -1:
@@ -53,7 +53,7 @@ def solution(k, num, links):
     start, end = max(num), 10**8
     while start + 1 < end:
         mid = (start + end) // 2
-        if group(root, mid, left_child, right_child, num) <= k:
+        if group(root, mid, left_children, right_children, num) <= k:
             end = mid
         else:
             start = mid

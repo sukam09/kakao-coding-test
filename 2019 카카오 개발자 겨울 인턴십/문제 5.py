@@ -1,32 +1,21 @@
-# from bisect import bisect_left
+import sys
+
+sys.setrecursionlimit(10**6)
 
 
-def search(room_number, k, rooms):
-    start, end = room_number, k
-    while start + 1 < end:
-        print(start, end, rooms)
-        mid = (start + end) // 2
-        if mid in rooms:
-            end = mid
-        else:
-            start = mid
-    return end
+def find(room_id):
+    if room_id not in next_rooms:
+        next_rooms[room_id] = room_id + 1
+        return room_id
+
+    next_rooms[room_id] = find(next_rooms[room_id])
+    return next_rooms[room_id]
 
 
-def solution(k, room_numbers):
-    rooms = set(range(1, k + 1))
+def solution(k, room_number):
+    global next_rooms
+    next_rooms = {}
     ans = []
-
-    for room_number in room_numbers:
-        if room_number in rooms:
-            rooms.remove(room_number)
-            ans.append(room_number)
-        else:
-            target = search(room_number, k, rooms)
-            rooms.remove(target)
-            ans.append(target)
-
+    for room_id in room_number:
+        ans.append(find(room_id))
     return ans
-
-
-print(solution(10, [1, 3, 4, 1, 3, 1]))

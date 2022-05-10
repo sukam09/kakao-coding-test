@@ -15,12 +15,12 @@ def solution(board):
     queue = deque([(0, 0, 0), (0, 0, 1)])
 
     while queue:
-        x, y, dir_ = queue.popleft()
-        cost = costs[x][y][dir_]
+        x, y, d = queue.popleft()
+        cost = costs[x][y][d]
 
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
-            next_cost = cost + 100 + 500 * (i != dir_)
+            next_cost = cost + 100 + 500 * (i != d)
             if oob(nx, ny, n) or board[nx][ny] == 1 or next_cost >= costs[nx][ny][i]:
                 continue
             costs[nx][ny][i] = next_cost
