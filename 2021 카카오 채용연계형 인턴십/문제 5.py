@@ -3,36 +3,37 @@ import sys
 sys.setrecursionlimit(10**6)
 
 
-def dfs(cur, lim, left_children, right_children, num):
+def dfs(cur, lim):
     global cnt
     left_num = 0
     right_num = 0
 
     if left_children[cur] != -1:
-        left_num = dfs(left_children[cur], lim, left_children, right_children, num)
+        left_num = dfs(left_children[cur], lim)
     if right_children[cur] != -1:
-        right_num = dfs(right_children[cur], lim, left_children, right_children, num)
+        right_num = dfs(right_children[cur], lim)
 
-    if num[cur] + left_num + right_num <= lim:
-        return num[cur] + left_num + right_num
-    if num[cur] + min(left_num, right_num) <= lim:
+    if nums[cur] + left_num + right_num <= lim:
+        return nums[cur] + left_num + right_num
+    if nums[cur] + min(left_num, right_num) <= lim:
         cnt += 1
-        return num[cur] + min(left_num, right_num)
+        return nums[cur] + min(left_num, right_num)
     cnt += 2
-    return num[cur]
+    return nums[cur]
 
 
-def group(root, lim, left_children, right_children, num):
+def group(root, lim):
     global cnt
     cnt = 0
-    dfs(root, lim, left_children, right_children, num)
+    dfs(root, lim)
     cnt += 1
     return cnt
 
 
 def solution(k, num, links):
-    global cnt
-    n = len(num)
+    global nums, left_children, right_children
+    nums = num
+    n = len(nums)
     left_children = []
     right_children = []
     parents = [-1] * n
@@ -53,7 +54,7 @@ def solution(k, num, links):
     start, end = max(num), 10**8
     while start + 1 < end:
         mid = (start + end) // 2
-        if group(root, mid, left_children, right_children, num) <= k:
+        if group(root, mid) <= k:
             end = mid
         else:
             start = mid
