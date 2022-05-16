@@ -1,1 +1,1 @@
-# programmers-kakao
+# kakao-coding-test
