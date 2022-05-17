@@ -1,4 +1,5 @@
 from math import ceil
+from collections import defaultdict
 
 
 def time_to_min(time):
@@ -9,15 +10,12 @@ def time_to_min(time):
 
 def solution(fees, records):
     basic_time, basic_fare, unit_time, unit_fare = fees
-    history = {}
+    history = defaultdict(list)
     ans = []
 
     for record in records:
         time, carnum, detail = record.split()
-        if carnum not in history:
-            history[carnum] = [time]
-        else:
-            history[carnum].append(time)
+        history[carnum].append(time)
 
     for carnum in history:
         if len(history[carnum]) % 2 == 1:
