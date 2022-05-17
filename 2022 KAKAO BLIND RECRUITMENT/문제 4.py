@@ -8,7 +8,6 @@ def solution(n, info):
     for result in product([1, 0], repeat=10):
         remain = n
         ryan = [0] * 11
-        losses = []
 
         for i in range(10):
             if result[i] == 1:
